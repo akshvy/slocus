@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Timer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="settings-icon" id="settingsIcon">⚙️</div>
+
+    <div class="pomodoro">
+        <div id="timer" class="timer"> 
+            <span id="minutes">25</span>:<span id="seconds">00</span>
+        </div>
+        <div class="controls">
+            <button id="reset">Reset</button>
+        </div>
+    </div>
+
+    <div class="spotify-widget">
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1xVQZjNBLeHGCLfT3Ngfrk?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
+
+    <div class="modal" id="settingsModal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h2>Settings</h2>
+            <label for="pomodoroDuration">Pomodoro Duration (minutes):</label>
+            <input type="range" id="pomodoroDuration" min="1" max="60" value="25" step="1">
+            <span id="pomodoroValue">25 minutes</span>
+            
+            <label for="breakDuration">Break Duration (minutes):</label>
+            <input type="range" id="breakDuration" min="1" max="30" value="5" step="1">
+            <span id="breakValue">5 minutes</span>
+        </div>
+    </div>
+
+    <!-- To-Do List Section -->
+    <div class="todo-container">
+        <h2>To-Do List</h2>
+        <input type="text" id="taskInput" placeholder="Add a new task...">
+        <button id="addTask">Add Task</button>
+        <div id="todoList"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

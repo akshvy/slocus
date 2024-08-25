@@ -1,0 +1,198 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-image: url('./hero.png'); /* Replace with your image URL */
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+  }
+  
+  .settings-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+    cursor: pointer;
+    z-index: 10;
+  }
+  
+  .pomodoro {
+    width: 90%;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .timer {
+    font-size: 280px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  
+  .timer:hover {
+    transform: scale(1.05);
+  }
+  
+  .controls button {
+    padding: 12px 24px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    color: #3130306e;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    font-size: 16px;
+  }
+  
+  .controls button:hover {
+    background-color: #bbc4be;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    right: 20px;
+    top: 20px;
+    width: 300px;
+    background-color: rgba(0, 0, 0, 0.144);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    transition: all 0.3s ease;
+  }
+  
+  .modal-content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+  }
+  
+  .todo-container {
+    width: 90%;
+    max-width: 400px;
+    margin: 20px auto;
+    background-color: rgba(0, 0, 0, 0.336);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .todo-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  #taskInput {
+    width: calc(100% - 100px);
+    padding: 10px;
+    border: 1px solid #0000001a;
+    border-radius: 5px;
+    margin-right: 10px;
+  }
+  
+  #addTask {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #0066d3;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  #addTask:hover {
+    background-color: hsl(0, 97%, 73%);
+  }
+  
+  #todoList {
+    margin-top: 20px;
+  }
+  
+  .todo-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #cccccc3a;
+  }
+  
+  .todo-item.completed {
+    text-decoration: line-through;
+    color: #aaa;
+  }
+  
+  .todo-item button {
+    border: none;
+    background: none;
+    color: #ff4d4d;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .todo-item button:hover {
+    color: #ee0000;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .pomodoro {
+        width: 90%;
+        max-width: 90%;
+    }
+  
+    .timer {
+        font-size: 60px;
+    }
+  
+    .controls button {
+        padding: 10px 20px;
+    }
+  
+    .settings {
+        width: 80%;
+        max-width: 300px;
+    }
+  }
+  
+  /* Spotify Widget */
+  .spotify-widget {
+    position: fixed; /* Fixes the position relative to the viewport */
+    bottom: 20px; /* Distance from the bottom */
+    right: 20px; /* Distance from the right */
+    z-index: 1000; /* Ensure it appears above other elements */
+    text-align: center; /* Center the content */
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Shadow effect */
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .pomodoro {
+        width: 90%; /* Full width on smaller screens */
+        max-width: 90%; /* Adjust max width */
+    }
+  }
