@@ -24,6 +24,7 @@ body {
 
 .pomodoro {
     width: 90%;
+    max-width: 600px; 
     text-align: center;
     position: relative;
     z-index: 2;
@@ -64,7 +65,8 @@ body {
     z-index: 1000;
     right: 20px;
     top: 20px;
-    width: 300px;
+    width: 90%; 
+    max-width: 300px; 
     background-color: rgba(0, 0, 0, 0.144);
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -90,7 +92,6 @@ body {
     color: black;
 }
 
-
 .spotify-widget {
     position: fixed; 
     bottom: 20px; 
@@ -100,14 +101,43 @@ body {
     background-color: rgba(0, 0, 0, 0.7); 
     border-radius: 10px; 
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); 
+    width: calc(100% - 40px); 
+    max-width: 400px; 
 }
-
-
-
 
 @media (max-width: 768px) {
     .pomodoro {
         width: 90%;
         max-width: 90%; 
+    }
+
+    .timer {
+        font-size: 150px; 
+    }
+
+    .controls button {
+        font-size: 14px; 
+        padding: 10px 20px; 
+    }
+
+    .modal {
+        width: 90%; 
+        max-width: none; 
+    }
+
+    .spotify-widget {
+        width: calc(100% - 40px); 
+        max-width: none; 
+    }
+}
+
+@media (max-width: 480px) {
+    .timer {
+        font-size: 100px; 
+    }
+
+    .controls button {
+        font-size: 12px; 
+        padding: 8px 16px; 
     }
 }
