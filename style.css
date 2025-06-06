@@ -59,6 +59,37 @@ body {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
+.playlist-settings {
+    text-align: right; /* Align text to the right */
+    margin: 20px 20px; /* Add margin to the top and sides */
+    position: absolute; /* Position it absolutely */
+    top: 100px; /* Adjust the top position as needed */
+    right: 20px; /* Align to the right */
+    z-index: 10; /* Ensure it appears above other elements */
+}
+
+.playlist-settings input {
+    padding: 10px;
+    width: 70%;
+    max-width: 200px; /* Adjust width for better fit */
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.playlist-settings button {
+    padding: 10px 20px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+}
+
+.playlist-settings button:hover {
+    background-color: #45a049;
+}
+
 .modal {
     display: none;
     position: fixed;

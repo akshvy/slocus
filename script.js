@@ -12,6 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const settingsIcon = document.getElementById('settingsIcon');
     const settingsModal = document.getElementById('settingsModal');
     const closeModal = document.getElementById('closeModal');
+    const playlistUrlInput = document.getElementById('playlistUrl');
+    const updatePlaylistButton = document.getElementById('updatePlaylist');
+    const spotifyIframe = document.querySelector('.spotify-widget iframe');
 
     // Load settings and render tasks on page load
     function loadSettings() {
@@ -102,6 +105,18 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('click', (event) => {
         if (event.target === settingsModal) {
             settingsModal.style.display = 'none';
+        }
+    });
+
+    // Update Spotify playlist URL
+    updatePlaylistButton.addEventListener('click', () => {
+        const newPlaylistUrl = playlistUrlInput.value.trim();
+        if (newPlaylistUrl) {
+            // Update the iframe src with the new playlist URL
+            spotifyIframe.src = newPlaylistUrl.includes('embed') ? newPlaylistUrl : newPlaylistUrl.replace('open.spotify.com', 'open.spotify.com/embed');
+            playlistUrlInput.value = ''; // Clear the input field
+        } else {
+            alert('Please enter a valid Spotify playlist URL.');
         }
     });
 
