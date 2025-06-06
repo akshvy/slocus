@@ -90,6 +90,7 @@ body {
     background-color: #45a049;
 }
 
+/* Responsive modal and blur effect */
 .modal {
     display: none;
     position: fixed;
@@ -99,10 +100,12 @@ body {
     background: rgba(0,0,0,0.4);
     justify-content: center;
     align-items: center;
+    backdrop-filter: blur(8px); /* Blur the background */
+    -webkit-backdrop-filter: blur(8px);
 }
 
 .modal-content {
-    background: #fff;
+    background: rgba(255,255,255,0.95);
     margin: auto;
     padding: 2em 1.5em;
     border-radius: 16px;
@@ -111,6 +114,9 @@ body {
     box-shadow: 0 8px 32px rgba(0,0,0,0.15);
     position: relative;
     color: #000;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
 }
 
 .close {
@@ -123,50 +129,73 @@ body {
 }
 .close:hover { color: #333; }
 
+/* Spotify FAB Icon */
+.spotify-fab {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    width: 60px;
+    height: 60px;
+    background: #1db954;
+    border-radius: 50%;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2001;
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: spotifyFabIn 0.5s;
+}
+.spotify-fab img {
+    width: 32px;
+    height: 32px;
+    filter: brightness(0) invert(1);
+}
+.spotify-fab:active {
+    transform: scale(0.95);
+}
+@keyframes spotifyFabIn {
+    from { transform: scale(0); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Vibration animation for dancing effect */
+@keyframes vibrate {
+    0% { transform: translate(0, 0) rotate(-5deg);}
+    20% { transform: translate(-2px, 2px) rotate(5deg);}
+    40% { transform: translate(-2px, -2px) rotate(-5deg);}
+    60% { transform: translate(2px, 2px) rotate(5deg);}
+    80% { transform: translate(2px, -2px) rotate(-5deg);}
+    100% { transform: translate(0, 0) rotate(-5deg);}
+}
+.spotify-fab.vibrating {
+    animation: vibrate 0.4s infinite;
+}
+
 .spotify-widget {
     position: fixed; 
     bottom: 20px; 
     left: 20px; 
-    z-index: 1000; 
+    z-index: 2000; 
     text-align: center; 
     background-color: rgba(0, 0, 0, 0.7); 
     border-radius: 10px; 
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); 
     width: calc(100% - 40px); 
     max-width: 400px; 
+    animation: spotifyWidgetIn 0.5s;
 }
-
-.playlist-settings-modal {
-    background: #f7f7fa;
-    padding: 1em;
-    border-radius: 10px;
-    margin-top: 1em;
-    display: flex;
-    flex-direction: column;
-    gap: 0.7em;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+@keyframes spotifyWidgetIn {
+    from { transform: translateY(100px) scale(0.8); opacity: 0; }
+    to { transform: translateY(0) scale(1); opacity: 1; }
 }
-
-.playlist-settings-modal input[type="text"] {
-    padding: 0.5em;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    font-size: 1em;
-    width: 100%;
+.spotify-widget.hide-anim {
+    animation: spotifyWidgetOut 0.4s forwards;
 }
-
-.playlist-settings-modal button {
-    background: #1db954;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    padding: 0.5em 1em;
-    font-size: 1em;
-    cursor: pointer;
-    transition: background 0.2s;
-}
-.playlist-settings-modal button:hover {
-    background: #159c43;
+@keyframes spotifyWidgetOut {
+    from { transform: translateY(0) scale(1); opacity: 1; }
+    to { transform: translateY(100px) scale(0.8); opacity: 0; }
 }
 
 @media (max-width: 768px) {
@@ -210,8 +239,20 @@ body {
     .modal-content {
         width: 98vw;
         padding: 1em;
+        max-width: 98vw;
+        font-size: 1em;
+    }
+    .pomodoro, .spotify-widget {
+        max-width: 98vw;
     }
     .playlist-settings-modal {
         padding: 0.5em;
+    }
+    .timer {
+        font-size: 18vw;
+    }
+    .controls button {
+        font-size: 1em;
+        padding: 10px 16px;
     }
 }

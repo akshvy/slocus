@@ -18,8 +18,14 @@
         </div>
     </div>
 
-    <div class="spotify-widget">
-        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1xVQZjNBLeHGCLfT3Ngfrk?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    <!-- Spotify FAB Icon -->
+    <div class="spotify-fab" id="spotifyFab" title="Show Spotify Player">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/spotify.svg" alt="Spotify" />
+    </div>
+
+    <!-- Spotify Widget (initially hidden) -->
+    <div class="spotify-widget" id="spotifyWidget" style="display:none;">
+        <iframe id="spotifyFrame" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1xVQZjNBLeHGCLfT3Ngfrk?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
     </div>
 
     <div class="modal" id="settingsModal">

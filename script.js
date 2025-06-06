@@ -15,6 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const playlistUrlInput = document.getElementById('playlistUrl');
     const updatePlaylistButton = document.getElementById('updatePlaylist');
     const spotifyIframe = document.querySelector('.spotify-widget iframe');
+    const spotifyFab = document.getElementById('spotifyFab');
+    const spotifyWidget = document.getElementById('spotifyWidget');
+    const spotifyFrame = document.getElementById('spotifyFrame');
 
     // Load settings and render tasks on page load
     function loadSettings() {
@@ -121,6 +124,65 @@ document.addEventListener('DOMContentLoaded', () => {
             playlistUrlInput.placeholder = 'Invalid Spotify URL';
         }
     };
+
+    // Show Spotify widget, hide FAB, start vibration
+    spotifyFab.addEventListener('click', (e) => {
+        spotifyFab.style.display = 'none';
+        spotifyWidget.style.display = 'block';
+        spotifyWidget.classList.remove('hide-anim');
+        spotifyWidget.classList.add('show-anim');
+        spotifyFab.classList.add('vibrating'); // Start vibration
+        e.stopPropagation();
+    });
+
+    // Hide Spotify widget, show FAB, stop vibration
+    function hideSpotifyWidget() {
+        spotifyWidget.classList.remove('show-anim');
+        spotifyWidget.classList.add('hide-anim');
+        setTimeout(() => {
+            spotifyWidget.style.display = 'none';
+            spotifyFab.style.display = 'flex';
+            spotifyFab.classList.remove('vibrating'); // Stop vibration
+        }, 400); // Match animation duration
+    }
+
+    spotifyWidget.addEventListener('click', hideSpotifyWidget);
+
+    // Hide on click outside the widget
+    document.addEventListener('click', function(event) {
+        if (
+            spotifyWidget.style.display === 'block' &&
+            !spotifyWidget.contains(event.target) &&
+            event.target !== spotifyFab
+        ) {
+            hideSpotifyWidget();
+        }
+    });
+
+    // Vibrate FAB when music is playing
+    window.addEventListener('message', function(event) {
+        // Spotify iframe sends messages, but not a public API for play state.
+        // We'll use a workaround: vibrate when widget is open for demo purposes.
+        // For real detection, you'd need Spotify Web Playback SDK.
+    });
+
+    // DEMO: Vibrate FAB when widget is open (simulate playing)
+    // Remove vibration when widget is closed
+    function setFabVibrating(vibrate) {
+        if (vibrate) {
+            spotifyFab.classList.add('vibrating');
+        } else {
+            spotifyFab.classList.remove('vibrating');
+        }
+    }
+
+    // Simulate vibration when widget is open
+    spotifyFab.addEventListener('click', () => setFabVibrating(true));
+    spotifyWidget.addEventListener('transitionend', () => {
+        if (spotifyWidget.style.display === 'none') setFabVibrating(false);
+    });
+    // Also remove vibration when widget is hidden
+    spotifyWidget.addEventListener('click', () => setFabVibrating(false));
 
     loadSettings();
 });
