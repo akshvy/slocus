@@ -94,34 +94,34 @@ body {
     display: none;
     position: fixed;
     z-index: 1000;
-    right: 20px;
-    top: 20px;
-    width: 90%; 
-    max-width: 300px; 
-    background-color: rgba(0, 0, 0, 0.144);
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-    transition: all 0.3s ease;
+    left: 0; top: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.4);
+    justify-content: center;
+    align-items: center;
 }
 
 .modal-content {
-    display: flex;
-    flex-direction: column;
+    background: #fff;
+    margin: auto;
+    padding: 2em 1.5em;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+    position: relative;
+    color: #000;
 }
 
 .close {
-    color: #aaa;
-    float: right;
-    font-size: 20px;
-    font-weight: bold;
+    position: absolute;
+    top: 1em; right: 1em;
+    font-size: 1.5em;
     cursor: pointer;
+    color: #888;
+    transition: color 0.2s;
 }
-
-.close:hover,
-.close:focus {
-    color: black;
-}
+.close:hover { color: #333; }
 
 .spotify-widget {
     position: fixed; 
@@ -134,6 +134,39 @@ body {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); 
     width: calc(100% - 40px); 
     max-width: 400px; 
+}
+
+.playlist-settings-modal {
+    background: #f7f7fa;
+    padding: 1em;
+    border-radius: 10px;
+    margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7em;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.playlist-settings-modal input[type="text"] {
+    padding: 0.5em;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1em;
+    width: 100%;
+}
+
+.playlist-settings-modal button {
+    background: #1db954;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 0.5em 1em;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.playlist-settings-modal button:hover {
+    background: #159c43;
 }
 
 @media (max-width: 768px) {
@@ -170,5 +203,15 @@ body {
     .controls button {
         font-size: 12px; 
         padding: 8px 16px; 
+    }
+}
+
+@media (max-width: 600px) {
+    .modal-content {
+        width: 98vw;
+        padding: 1em;
+    }
+    .playlist-settings-modal {
+        padding: 0.5em;
     }
 }

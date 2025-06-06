@@ -37,6 +37,11 @@ document.addEventListener('DOMContentLoaded', () => {
         updateDisplay();
     }
 
+    function saveSettings() {
+        localStorage.setItem('pomodoroDuration', pomodoroInput.value);
+        localStorage.setItem('breakDuration', breakInput.value);
+    }
+
     function updateDisplay() {
         const minutes = Math.floor(timeLeft / 60);
         const seconds = timeLeft % 60;
@@ -57,8 +62,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function playSound() {
-        const audio = new Audio('alarm.mp3'); // Replace with your audio file path
-        audio.play();
+        // Optional: Replace with your own sound file if needed
+        // const audio = new Audio('alarm.mp3');
+        // audio.play();
     }
 
     pomodoroInput.addEventListener('input', () => {
@@ -91,34 +97,30 @@ document.addEventListener('DOMContentLoaded', () => {
         updateDisplay();
     });
 
-    // Open settings modal
-    settingsIcon.addEventListener('click', () => {
-        settingsModal.style.display = 'block';
-    });
+    // Modal open/close logic
+    settingsIcon.onclick = () => settingsModal.style.display = 'flex';
+    closeModal.onclick = () => settingsModal.style.display = 'none';
+    window.onclick = (e) => {
+        if (e.target === settingsModal) settingsModal.style.display = 'none';
+    };
 
-    // Close settings modal
-    closeModal.addEventListener('click', () => {
-        settingsModal.style.display = 'none';
-    });
-
-    // Close modal when clicking outside of it
-    window.addEventListener('click', (event) => {
-        if (event.target === settingsModal) {
+    // Playlist update logic
+    updatePlaylistButton.onclick = () => {
+        const url = playlistUrlInput.value.trim();
+        // Extract playlist ID from Spotify URL
+        const match = url.match(/playlist\/([a-zA-Z0-9]+)(\?|$)/);
+        if (match) {
+            const playlistId = match[1];
+            spotifyIframe.src = `https://open.spotify.com/embed/playlist/${playlistId}?utm_source=generator`;
+            playlistUrlInput.style.borderColor = '#ccc';
+            playlistUrlInput.placeholder = 'Spotify Playlist URL';
             settingsModal.style.display = 'none';
-        }
-    });
-
-    // Update Spotify playlist URL
-    updatePlaylistButton.addEventListener('click', () => {
-        const newPlaylistUrl = playlistUrlInput.value.trim();
-        if (newPlaylistUrl) {
-            // Update the iframe src with the new playlist URL
-            spotifyIframe.src = newPlaylistUrl.includes('embed') ? newPlaylistUrl : newPlaylistUrl.replace('open.spotify.com', 'open.spotify.com/embed');
-            playlistUrlInput.value = ''; // Clear the input field
         } else {
-            alert('Please enter a valid Spotify playlist URL.');
+            playlistUrlInput.style.borderColor = 'red';
+            playlistUrlInput.value = '';
+            playlistUrlInput.placeholder = 'Invalid Spotify URL';
         }
-    });
+    };
 
     loadSettings();
 });
